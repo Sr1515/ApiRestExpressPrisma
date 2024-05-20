@@ -25,15 +25,31 @@ class PostRepository {
     }
 
     async findById(id) {
-        
+        const post =  await prisma.post.findUnique({
+            where: {
+                id
+            }
+        })
+        return post
     }
 
     async update(id, data) {
-        
+        const post = await prisma.post.update({
+            where: {
+                id
+            },
+            data
+        })
+        return post
     }
 
     async delete(id) {
-        
+       await prisma.post.delete({
+            where: {
+                id
+            }
+        })
+        return
     }
 }
 
