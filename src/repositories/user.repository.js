@@ -100,6 +100,17 @@ class UserRepository {
         return follow
     }
 
+    async unfollow(idFollower, idFollowed) {
+        await prisma.follow.delete({
+            where: {
+                followerId_followedId: {
+                    followerId: idFollower,
+                    followedId: idFollowed
+                }
+            }
+        });
+    }
+
 
 }
 

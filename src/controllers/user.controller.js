@@ -60,6 +60,15 @@ class UserController {
             res.status(400).send(e)
         }
     }
+
+    async unfollowUser(req, res) {
+        try {
+            UserRepository.unfollow(Number(req.params.id), Number(req.params.idUnfollow))
+            res.status(200).send()
+        } catch (e) {
+            res.status(400).send(e)
+        }
+    }
 }
 
 export default new UserController()

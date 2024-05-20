@@ -7,7 +7,9 @@ const userRoutes = app => {
     app.put('/user/:id', UserController.update)
     app.delete('/user/:id', UserController.delete)
 
-    app.post('/user/:id/follow/:idFollowed', UserController.followUser);
+    /// follow and unfollow user routes
+    app.post('/user/:id/follow/:idFollowed', UserController.followUser)
+    app.delete('/user/:id/unfollow/:idUnfollow', UserController.unfollowUser)
 }
 
 
