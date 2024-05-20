@@ -8,8 +8,8 @@ const userRoutes = app => {
     app.delete('/user/:id', UserController.delete)
 
     /// follow and unfollow user routes
-    app.post('/user/:id/follow/:idFollowed', UserController.followUser)
-    app.delete('/user/:id/unfollow/:idUnfollow', UserController.unfollowUser)
+    app.post('/user/:id/follow/:idFollowed', UserController.follow)
+    app.delete('/user/:id/unfollow/:idUnfollow', UserController.unfollow)
 }
 
 

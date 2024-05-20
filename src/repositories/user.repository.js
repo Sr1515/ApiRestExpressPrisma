@@ -25,7 +25,7 @@ class UserRepository {
                 id: true,
                 name: true,
                 email: true,
-                posts: true, 
+                posts: true,
             }
         })
         return users

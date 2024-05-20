@@ -52,7 +52,7 @@ class UserController {
         }
     }
 
-    async followUser(req, res) {
+    async follow(req, res) {
         try {
             const follow = UserRepository.follow(Number(req.params.id), Number(req.params.idFollowed))
             res.status(201).send(follow)
@@ -61,7 +61,7 @@ class UserController {
         }
     }
 
-    async unfollowUser(req, res) {
+    async unfollow(req, res) {
         try {
             UserRepository.unfollow(Number(req.params.id), Number(req.params.idUnfollow))
             res.status(200).send()
