@@ -51,6 +51,15 @@ class UserController {
             res.status(400).send(e)
         }
     }
+
+    async followUser(req, res) {
+        try {
+            const follow = UserRepository.follow(Number(req.params.id), Number(req.params.idFollowed))
+            res.status(201).send(follow)
+        } catch (e) {
+            res.status(400).send(e)
+        }
+    }
 }
 
 export default new UserController()

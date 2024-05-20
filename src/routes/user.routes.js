@@ -6,6 +6,8 @@ const userRoutes = app => {
     app.get('/user/:id', UserController.show)
     app.put('/user/:id', UserController.update)
     app.delete('/user/:id', UserController.delete)
+
+    app.post('/user/:id/follow/:idFollowed', UserController.followUser);
 }
 
 

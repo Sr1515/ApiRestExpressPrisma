@@ -32,17 +32,14 @@ model User {
   posts     Post[]
   follows   Follow[] @relation(name: "userFollows")
   followers Follow[] @relation(name: "userFollowers")
-  following Follow[] @relation(name: "userFollowedBy")
 }
 
 model Follow {
-  id         Int   @id @default(autoincrement())
-  follower   User  @relation(name: "userFollows", fields: [followerId], references: [id])
+  id         Int  @id @default(autoincrement())
+  follower   User @relation(name: "userFollows", fields: [followerId], references: [id])
   followerId Int
-  followed   User  @relation(name: "userFollowers", fields: [followedId], references: [id])
+  followed   User @relation(name: "userFollowers", fields: [followedId], references: [id])
   followedId Int
-  user       User? @relation(name: "userFollowedBy", fields: [userId], references: [id])
-  userId     Int?
 
   @@unique([followerId, followedId])
 }

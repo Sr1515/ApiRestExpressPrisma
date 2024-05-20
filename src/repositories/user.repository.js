@@ -13,7 +13,6 @@ class UserRepository {
                 posts: true,
                 password: true,
                 followers: true,
-                following: true,
                 follows: true
             }
         })
@@ -37,8 +36,39 @@ class UserRepository {
             where: {
                 id
             },
-        })
-        return user
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                password: false,
+                posts: false,
+                followers: {
+                    select: {
+                        id: false,
+                        followedId: false,
+                        followerId: false,
+                        follower: {
+                            select: {
+                                name: true,
+                            }
+                        },
+                    }
+                },
+                follows: {
+                    select: {
+                        id: false,
+                        followedId: false,
+                        followerId: false,
+                        followed: {
+                            select: {
+                                name: true,
+                            }
+                        },
+                    }
+                }
+            }
+        });
+        return user;
     }
 
     async update(id, data) {
@@ -59,6 +89,18 @@ class UserRepository {
         })
         return
     }
+
+    async follow(idFollower, idFollowed) {
+        const follow = await prisma.follow.create({
+            data: {
+                followerId: idFollower,
+                followedId: idFollowed
+            }
+        });
+        return follow
+    }
+
+
 }
 
 export default new UserRepository()
